@@ -4062,6 +4062,7 @@ export interface components {
             | components["schemas"]["UnknownError"]
           )[]
         | Record<string, any>;
+      input_id?: string;
       /** @enum {unknown} */
       mimetype:
         | "application/json"

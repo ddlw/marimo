@@ -23,6 +23,7 @@ from marimo._config.config import VenvConfig
 from marimo._config.manager import MarimoConfigManager
 from marimo._config.settings import GLOBAL_SETTINGS
 from marimo._environments.overlay import runtime_overlay
+from marimo._messaging.input import InputReply
 from marimo._messaging.notification import (
     NotificationMessage,
     StartupProgressNotification,
@@ -158,7 +159,7 @@ class IPCQueueManagerImpl(QueueManager):
     @property
     def input_queue(  # type: ignore[override]
         self,
-    ) -> QueueType[str]:
+    ) -> QueueType[str | InputReply]:
         return self._ipc.input_queue
 
     @property

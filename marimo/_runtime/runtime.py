@@ -61,6 +61,7 @@ from marimo._messaging.errors import (
     MarimoSyntaxError,
     UnknownError,
 )
+from marimo._messaging.input import InputReply
 from marimo._messaging.notebook.changes import ReorderCells, Transaction
 from marimo._messaging.notification import (
     HumanReadableStatus,
@@ -2976,7 +2977,7 @@ def _maybe_profile(profile_path: str | None) -> Iterator[None]:
 def _create_streams(
     socket_addr: tuple[str, int] | None,
     stream_queue: QueueType[KernelMessage] | None,
-    input_queue: QueueType[str],
+    input_queue: QueueType[str | InputReply],
     is_edit_mode: bool,
     should_redirect_stdio: bool,
     use_fd_redirect: bool,
@@ -3084,7 +3085,7 @@ def launch_kernel(
     control_queue: QueueType[CommandMessage],
     set_ui_element_queue: QueueType[BatchableCommand],
     completion_queue: QueueType[OutOfBandCommand],
-    input_queue: QueueType[str],
+    input_queue: QueueType[str | InputReply],
     stream_queue: QueueType[KernelMessage] | None,
     socket_addr: tuple[str, int] | None,
     is_edit_mode: bool,
